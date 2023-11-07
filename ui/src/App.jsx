@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+<<<<<<< HEAD
 import Login from './components/pages/Login'
 import Dashboard from './components/pages/superadmin/Dashboard'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -11,11 +12,15 @@ import Auth from './api/Auth'
 import Layout from './components/layouts/Layout'
 import Users from './components/pages/superadmin/Users'
 import PageComponents from './components/layouts/PageComponents'
+=======
+import Layout from './components/Layout'
+>>>>>>> origin/jason
 
 function App() {
 
 
   return (
+<<<<<<< HEAD
     <BrowserRouter>
       <Routes>
         <Route element={<UnAuth />}>
@@ -32,6 +37,11 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+=======
+    <>
+    <Layout/>
+    </>
+>>>>>>> origin/jason
   )
 }
 
