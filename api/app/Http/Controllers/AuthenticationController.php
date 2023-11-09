@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
+    // REGISTRATION ==============================================================================================
     public function register(Request $request){
 
         $request->validate([
@@ -34,6 +35,7 @@ class AuthenticationController extends Controller
         ], 201);
     }
 
+    // LOGIN =====================================================================================================
     public function login(Request $request){
 
         $request->validate([
