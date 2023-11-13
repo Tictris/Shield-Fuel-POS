@@ -1,0 +1,12 @@
+import React from 'react'
+import Label2 from './Label2'
+
+const Card = ({ children }) => {
+  return (
+    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] w-full py-4 px-6 rounded-md">
+      { children }
+    </div>
+  )
+}
+
+export default Card
