@@ -3,18 +3,21 @@ import Sidebar from './Sidebar'
 import Topbar from './Topbar'
 import Dashboard from '../pages/Dashboard'
 import Content from './Content'
+import LayoutContextProvider from '../context/LayoutContext'
 
 const Layout = () => {
   return (
-    <div className='flex h-screen'>
-      <Sidebar/>
-      <div className="grow">
-        <div className="flex flex-col">
-          <Topbar/>
-          <Content/>
+    <LayoutContextProvider>
+      <div className='flex h-screen'>
+        <Sidebar/>
+        <div className="grow">
+          <div className="flex flex-col">
+            <Topbar/>
+            <Content/>
+          </div>
         </div>
       </div>
-    </div>
+    </LayoutContextProvider>
   )
 }
 

@@ -14,10 +14,7 @@ const LoginContextProvider = ({ children }) => {
     password: ''
   })
 
-  const [errors, setErrors] = useState({
-    email: '',
-    password: ''
-  })
+  const [errors, setErrors] = useState([])
 
   const handleChange = (e) => {
     setCredentials({
@@ -44,11 +41,12 @@ const LoginContextProvider = ({ children }) => {
 
       nav('/dashboard')
 
-      
-
-
     } catch(error){
-      console.log(error)
+      if(error.response && error.response.status === 422){
+        setErrors(error.response.data.errors)
+      } else {
+        console.error('Login Error', error)
+      }
     }
   }
   
@@ -58,9 +56,9 @@ const LoginContextProvider = ({ children }) => {
         handleSubmit,
         credentials,
         setCredentials,
-        errors,
         setErrors,
         handleChange,
+        errors
       }}>
       { children }
     </LoginContext.Provider>

@@ -3,7 +3,7 @@ import { LoginContext } from '../context/LoginContext'
 
 const PasswordInput = () => {
 
-  const { password, setPassword, credentials, handleChange} = useContext(LoginContext)
+  const { password, setPassword, credentials, handleChange, errors} = useContext(LoginContext)
 
   return (
     <div className='pb-1'>
@@ -13,7 +13,7 @@ const PasswordInput = () => {
         name="password"
         id="password"
         placeholder='Enter password here'
-        className='input-style'
+        className={`input-style border ${ errors.password ? 'border-red-500' : '' }`}
         value={credentials.password}
         onChange={handleChange}
       />

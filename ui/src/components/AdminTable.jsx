@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { RiEdit2Line } from 'react-icons/ri'
-
-const Table = () => {
+const AdminTable = () => {
   return (
     <table className="min-w-full text-left text-sm font-light">
       <thead className="border-b border-color1">
@@ -133,4 +131,4 @@ const Table = () => {
   )
 }
 
-export default Table
+export default AdminTable

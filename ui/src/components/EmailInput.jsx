@@ -4,7 +4,7 @@ import { LoginContext } from '../context/LoginContext'
 
 const EmailInput = () => {
 
-  const { email, setEmail, credentials, handleChange} = useContext(LoginContext)
+  const { email, setEmail, credentials, handleChange, errors} = useContext(LoginContext)
   
   return (
     <div className='pb-1'>
@@ -14,7 +14,7 @@ const EmailInput = () => {
         name="email"
         id="email"
         placeholder='Enter email here'
-        className='input-style'
+        className={`input-style border ${ errors.email ? 'border-red-500' : '' }`}
         value={credentials.email}
         onChange={handleChange}
       />

@@ -1,5 +1,4 @@
 import React from 'react'
-import Label2 from './Label2'
 
 const Card = ({ children }) => {
   return (

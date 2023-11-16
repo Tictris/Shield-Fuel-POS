@@ -27,6 +27,10 @@ class AuthenticationController extends Controller
 
         if(User::count() == 1){
             $user->assignRole('super_admin');
+        } else if(Auth::user()->hasRole('super_admin')){
+            $user->assignRole('admin');
+        } elseif (Auth::user()->hasRole('admin')) {
+            $user->assignRole('manager');
         }
 
         return response()->json([
@@ -60,5 +64,16 @@ class AuthenticationController extends Controller
                 'message'   =>  'Invalid credentials'
             ], 401);
         }
+    }
+
+    // LOGOUT ======================================================================================================
+    public function logout(Request $request){
+        $user = Auth::user();
+
+        $user->tokens()->delete();
+
+        return response()->json([
+            'message'   => 'Logged out successfully!'
+        ]);
     }
 }

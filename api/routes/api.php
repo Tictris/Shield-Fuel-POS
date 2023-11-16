@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,30 @@ use App\Http\Controllers\AuthenticationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
 });
 
+// SUPER ADMIN ROUTES ============================================================
 Route::middleware(['api', 'role:super_admin'])->group(function () {
-    
+
+    Route::post('sa/logout', [AuthenticationController::class, 'logout']);
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('super_admin_user', 'user');
+    });
+});
+
+Route::middleware(['api', 'role:manager'])->group(function () {
+
+    Route::post('m/logout', [AuthenticationController::class, 'logout']);
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('super_admin_user', 'user');
+    });
 });

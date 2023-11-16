@@ -14,13 +14,13 @@ const Login = () => {
     <LoginContextProvider>
       <Screen>
         <Logo/>
-          <div className="w-96">
+        <div className="w-96">
           <FormCard>
             <EmailInput/>
             <PasswordInput/>
             <ForgotPasswordLink/>
             <LoginButton/>
-            <span className='italic text-xs py-1'>Don't have ana account? Contact Shield Team.</span>
+            <span className='italic text-sm pb-3'>Don't have an account? Contact Shield Team.</span>
           </FormCard>
         </div>
       </Screen>
