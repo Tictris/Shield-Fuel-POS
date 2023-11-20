@@ -3,7 +3,7 @@
 */
 
 .label-style {
-  @apply block font-sans font-semibold
+  @apply block font-sans font-semibold text-[#3d4465]
 }
 
 .input-style {

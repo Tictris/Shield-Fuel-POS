@@ -16,5 +16,12 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function userList(){
 
+        $users = User::role('admin')->with('roles')->get();
+
+        return response()->json([
+            'users' => $users
+        ], 200);
+    }
 }

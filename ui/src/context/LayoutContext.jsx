@@ -33,8 +33,8 @@ const LayoutContextProvider = ({ children }) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const role = localStorage.getItem('role')
 
-    console.log(user.firstname, user.lastname)
-    console.log(role)
+    // console.log(user.firstname, user.lastname)
+    // console.log(role)
 
     setUser(user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1) + ' ' + user.lastname.charAt(0).toUpperCase() + user.lastname.slice(1))
     setRole(role)

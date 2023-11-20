@@ -22,17 +22,20 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::controller(AuthenticationController::class)->group(function () {
-    Route::post('/register', 'register');
     Route::post('/login', 'login');
 });
 
 // SUPER ADMIN ROUTES ============================================================
 Route::middleware(['api', 'role:super_admin'])->group(function () {
 
-    Route::post('sa/logout', [AuthenticationController::class, 'logout']);
+    Route::controller(AuthenticationController::class)->group(function () {
+        Route::post('sa/register', 'register');
+        Route::post('sa/logout', 'logout');
+    });
 
     Route::controller(UserController::class)->group(function () {
         Route::get('super_admin_user', 'user');
+        Route::get('sa/users', 'userList');
     });
 });
 
