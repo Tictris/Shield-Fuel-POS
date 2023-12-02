@@ -11,15 +11,10 @@ const FormCard = ({ children }) => {
 
   const { handleSubmit } = useContext(LoginContext)
 
-  const currentPath = window.location.pathname
   return (
-    <div>
+    <div className='w-96'>
       <div className="bg-color1 py-4 text-center text-white font-bold text-xl">
-        <span className=''>
-          {
-            currentPath === '/' ? <LoginCardHeader/> : <ForgotPasswordCardHeader/>
-          }
-        </span>
+        <span>Login to your account</span>
       </div>
       <div className="flex flex-col py-4 px-5 space-y-2 border">
         <form onSubmit={handleSubmit}>

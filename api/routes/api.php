@@ -23,6 +23,17 @@ use App\Http\Controllers\UserController;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::post('/login', 'login');
+
+    /*
+    Forget password fields:
+    - email
+    - token (hidden value)
+
+    pass the token value to 'reset_pass' from the email
+    
+    */
+    Route::post('/forget-password','forget_pass');
+    Route::post('/reset-password','reset_pass');
 });
 
 // SUPER ADMIN ROUTES ============================================================

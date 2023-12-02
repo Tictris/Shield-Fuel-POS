@@ -7,6 +7,8 @@ import Users from './pages/User'
 import Branch from './pages/Branch'
 import Unauth from './util/Unauth'
 import Auth from './util/Auth'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route element={<Unauth/>}>
           <Route exact path='/' element={<Login/>} />
+          <Route path='forgot-password' element={<ForgotPassword/>} />
+          <Route path='reset-password' element={<ResetPassword/>} />
         </Route>
         <Route element={<Auth/>}>
           <Route element={<Layout/>}>

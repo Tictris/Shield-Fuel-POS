@@ -1,27 +1,25 @@
-import React from 'react'
-import  { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 
-import FormCard from '../components/FormCard'
-import PasswordInput from '../components/PasswordInput'
-import EmailInput from '../components/EmailInput'
-import ForgotPasswordLink from '../components/ForgotPasswordLink'
-
-import ScreenLayout from '../components/ScreenLayout'
-import SystemLogo from '../components/SystemLogo'
-import ForgotPasswordButton from '../components/ForgotPasswordButton'
-
+import Screen from '../components/Screen'
+import Logo from '../components/Logo'
+import ForgotPAsswordFormCard from '../components/ForgotPAsswordFormCard'
+import CreateUserEmailInput from '../components/CreateUserEmailInput'
+import ForgotPasswordSubmitButton from '../components/ForgotPasswordSubmitButton'
 
 const ForgotPassword = () => {
+
+  const [email, setEmail] = useState('')
+  const [errors, setErrors] = useState([])
+
   return (
-    <ScreenLayout>
-      <SystemLogo/>
-        <div className="w-96 h-96">
-          <FormCard>
-            <EmailInput/>
-            <ForgotPasswordButton/>
-          </FormCard>
-       </div>
-    </ScreenLayout>
+    <Screen>
+      <Logo/>
+      <ForgotPAsswordFormCard>
+        <CreateUserEmailInput errors={errors} email={email} handleChange={(e) => setEmail(e.target.value)}/>
+        <ForgotPasswordSubmitButton/>
+      </ForgotPAsswordFormCard>
+    </Screen>
+    
   )
 }
 

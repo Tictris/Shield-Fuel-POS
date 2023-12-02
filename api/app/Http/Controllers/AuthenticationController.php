@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthenticationController extends Controller
 {
@@ -75,5 +79,59 @@ class AuthenticationController extends Controller
         return response()->json([
             'message'   => 'Logged out successfully!'
         ]);
+    }
+
+    // FORGET PASSWORD =============================================================================================
+    public function forget_pass(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users'
+        ]);
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::send('emails.forget-password', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
+
+        return response()->json([
+            'message' => 'Email sent successfully'
+        ], 200);
+    }
+    // RESET PASSWORD ==============================================================================================
+    public function reset_pass(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        $updatePassword = DB::table('password_resets')
+        ->where([
+            'email'=>$request->email,
+            'token' => $request->token
+        ])->first();
+
+        if(!$updatePassword){
+            return response()->json([
+                'message' => 'Invalid'
+            ], 401);
+        }
+
+        User::where('email', $request->email)
+        ->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response()->json([
+            'message' => 'password changed successfully'
+        ], 200);
+
     }
 }
