@@ -3,7 +3,7 @@ import React from 'react'
 const ConfirmPasswordInput = ({ password_confirmation, handleChange, errors }) => {
   return (
     <div className='pb-1'>
-      <label htmlFor="" className='label-style'>Confirm Password</label>
+      <label htmlFor="" className='label-style text-sm font-bold'>Confirm Password</label>
       <input
         type="password"
         className={`input-style border ${errors.password_confirmation ? 'border-red-500' : ''}`}

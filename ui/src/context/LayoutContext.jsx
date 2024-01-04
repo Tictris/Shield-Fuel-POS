@@ -8,6 +8,7 @@ import axiosInstance from '../api/axios'
 // IMPORT PACKAGES
 import { BiSolidDashboard, BiSolidBuildings, BiSolidDownArrow } from 'react-icons/bi'
 import { FaUsers, FaArrowLeft, FaUserCircle, FaBell, FaUserAlt, FaCogs, FaSignOutAlt   } from 'react-icons/fa'
+import { FaClipboardList } from "react-icons/fa6"
 import { NavLink, useLocation, Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -24,10 +25,13 @@ const LayoutContextProvider = ({ children }) => {
   const [role, setRole] = useState('')
 
   const menus = [
-    { name: 'Dashboard',  link: '/dashboard',   icon: BiSolidDashboard },
-    { name: 'Users',      link: '/users',       icon: FaUsers },
-    { name: 'Branch',     link: '/branches',    icon: BiSolidBuildings }
+    { name: 'Dashboard',    link: '/dashboard',   icon: BiSolidDashboard },
+    { name: 'Users',        link: '/users',       icon: FaUsers },
+    { name: 'Branch',       link: '/branches',    icon: BiSolidBuildings },
+    { name: 'Transaction',  link: '/transactions',  icon: FaClipboardList}
   ]
+
+  const isActive = menus.some((link) => location.pathname.includes(link))
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -37,7 +41,7 @@ const LayoutContextProvider = ({ children }) => {
     // console.log(role)
 
     setUser(user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1) + ' ' + user.lastname.charAt(0).toUpperCase() + user.lastname.slice(1))
-    setRole(role)
+    setRole(role.charAt(0).toUpperCase() + role.slice(1))
   }, [])
 
   // useEffect(() => {
@@ -93,7 +97,9 @@ const LayoutContextProvider = ({ children }) => {
         users,
         setDrop,
         drop,
-        handleLogout
+        handleLogout,
+        role,
+        isActive
 
       }}>
         {children}

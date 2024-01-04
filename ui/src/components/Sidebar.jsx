@@ -5,7 +5,7 @@ import { LayoutContext } from '../context/LayoutContext'
 
 const Sidebar = () => {
 
-  const { location, open, setOpen, menus, BiSolidDashboard, BiSolidBuildings, FaUsers, FaArrowLeft, logo, NavLink } = useContext(LayoutContext)
+  const { location, open, setOpen, menus, BiSolidDashboard, BiSolidBuildings, FaUsers, FaArrowLeft, logo, NavLink, isActive } = useContext(LayoutContext)
 
   return (
     <aside className={` ${open ? 'w-72' : 'w-20'} h-screen relative duration-200 p-4 pt-3 bg-color2`}>
@@ -14,10 +14,10 @@ const Sidebar = () => {
         <img src={logo} alt="" width={40} className={`duration-500 ${open && 'rotate-[360deg]'}`} />
         <span className={`font-serif text-color1 origin-left text-xl duration-200 font-semibold whitespace-pre ${!open && 'scale-0'}`}>SHIELD FUEL</span>
       </div>
-      <div className="pt-6">
+      <div className={`pt-6 ${isActive ? 'bg-color1 text-white hover:text-color2' : ''} `}>
         {
             menus.map((menu, i) => (
-              <NavLink key={i} to={menu.link} className={`text-gray-600 mb-2 text-sm flex items-center gap-x-4 cursor-pointer p-2 font-medium rounded ${location.pathname === menu.link ? 'bg-color1 text-white hover:text-color2' : 'hover:text-color1'}`}>
+              <NavLink key={i} to={menu.link} className={`text-gray-600 mb-2 text-sm flex items-center gap-x-4 cursor-pointer p-2 font-medium rounded ${location.pathname === menu.link ? 'bg-color1 text-white hover:text-color2' : 'hover:text-color1 hover:bg-gray-50'}`}>
                 <div className="duration-200">
                   {
                     React.createElement(menu?.icon, { size: "25" })

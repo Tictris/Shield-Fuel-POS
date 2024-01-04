@@ -9,6 +9,10 @@ import Unauth from './util/Unauth'
 import Auth from './util/Auth'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+import UserDetails from './pages/UserDetails'
+import Subscription from './pages/Subscription'
+import CreateBranch from './pages/CreateBranch'
+import Transaction from './pages/Transaction'
 
 function App() {
 
@@ -25,6 +29,10 @@ function App() {
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/users' element={<Users/>} />
             <Route path='/branches' element={<Branch/>} />
+            <Route path='/users/user-details' element={<UserDetails/>} />
+            <Route path='/users/user-details/subscription' element={<Subscription/>} />
+            <Route path='/branches/create-branch' element={<CreateBranch/>} />
+            <Route path='/transactions' element={<Transaction/>} />
           </Route>
         </Route>
       </Routes>

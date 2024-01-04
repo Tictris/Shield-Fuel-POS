@@ -30,8 +30,8 @@ class AuthenticationController extends Controller
         $user = User::create($data);
 
         if(User::count() == 1){
-            $user->assignRole('super_admin');
-        } else if(Auth::user()->hasRole('super_admin')){
+            $user->assignRole('super admin');
+        } else if(Auth::user()->hasRole('super admin')){
             $user->assignRole('admin');
         } elseif (Auth::user()->hasRole('admin')) {
             $user->assignRole('manager');

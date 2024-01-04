@@ -4,12 +4,11 @@ import { LayoutContext } from '../context/LayoutContext'
 
 const Topbar = () => {
 
-  const {FaUserCircle, BiSolidDownArrow, FaBell , user, drop, setDrop, FaUserAlt, FaCogs, FaSignOutAlt, Link, handleLogout } = useContext(LayoutContext)
+  const {FaUserCircle, BiSolidDownArrow, FaBell , user, drop, setDrop, FaUserAlt, FaCogs, FaSignOutAlt, Link, handleLogout, role } = useContext(LayoutContext)
 
   return (
     <header className='border-b py-4 px-6 flex justify-between text-gray-600'>
       <div className='flex items-center'>
-        <h1 className='text-xl font-semibold'>Page Title Here</h1>
       </div>
       <div className='flex gap-x-3 items-center relative'>
         <FaBell size={20} />
@@ -17,7 +16,7 @@ const Topbar = () => {
         <div className='flex flex-col'>
           {/* <span className='font-semibold'>{user.firstname} {user.lastname}</span> */}
           <span className='font-semibold text-right'>{user}</span>
-          <span className='text-sm text-right'>Super Admin</span>
+          <span className='text-sm text-right'>{role}</span>
         </div>
         <div className=''>
           <BiSolidDownArrow className='cursor-pointer' onClick={() => setDrop(!drop)}/>

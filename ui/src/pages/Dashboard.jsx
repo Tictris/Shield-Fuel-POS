@@ -5,9 +5,11 @@ import ManagerComSample from '../components/ManagerComSample'
 const Dashboard = () => {
   const role = localStorage.getItem('role')
   return (
+    <>
+      { role === 'super admin' ? <SuperAdminComSample/> : <ManagerComSample/> }
 
-    role === 'super_admin' ? <SuperAdminComSample/> : <ManagerComSample name='jason'/>
+    </>
   )
 }
 
-export default Dashboard
+export default Dashboard``

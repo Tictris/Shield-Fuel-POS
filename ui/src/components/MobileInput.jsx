@@ -3,7 +3,7 @@ import React from 'react'
 const MobileInput = ({ mobile, handleChange, errors }) => {
   return (
     <div className="pb-1">
-      <label htmlFor="" className='label-style'>Mobile</label>
+      <label htmlFor="" className='label-style text-sm font-bold'>Mobile</label>
       <input
         type="text"
         className={`input-style border ${errors.mobile ? 'border-red-500' : ''}`}

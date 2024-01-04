@@ -18,7 +18,11 @@ class UserController extends Controller
 
     public function userList(){
 
-        $users = User::role('admin')->with('roles')->get();
+        if(Auth::user()->hasRole('super admin')){
+            $users = User::role('admin')->with('roles')->orderBy('created_at', 'desc')->get();
+        } elseif (Auth::user()->hasRole('admin')) {
+            $users = User::role('manager')->with('roles')->orderBy('created_at', 'desc')->get();
+        }
 
         return response()->json([
             'users' => $users

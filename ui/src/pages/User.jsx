@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import axiosInstance from '../api/axios'
 import UserTable from '../components/UserTable'
 
+
 const Users = () => {
 
   const [users, setUsers] = useState([])
@@ -21,7 +22,6 @@ const Users = () => {
     .then((res) => {
       setUsers(res.data.users)
       setLoading(false)
-      console.log(res.data.users);
     })
   }
 

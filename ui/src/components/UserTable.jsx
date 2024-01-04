@@ -2,11 +2,13 @@ import React from 'react'
 
 import { RiEdit2Line } from 'react-icons/ri'
 
+import { Link } from 'react-router-dom'
+
 const UserTable = ({ users, loading }) => {
   return (
     <table className="min-w-full text-left text-sm font-light">
       <thead className="border-b border-color1">
-        <tr>
+        <tr className='text-gray-500'>
           <th scope="col" className="px-6 py-4 text-md w-3/12">Last Name</th>
           <th scope="col" className="px-6 py-4 text-md w-3/12">First Name</th>
           <th scope="col" className="px-6 py-4 text-md w-3/12">Email</th>
@@ -28,18 +30,18 @@ const UserTable = ({ users, loading }) => {
           ) : (
             users?.map((user, i) => {
               return (
-                <tr className="text-gray-600 font-medium" key={i}>
+                <tr className="text-gray-400 font-medium even:bg-gray-50 " key={i}>
                   <td className="whitespace-nowrap px-6 py-4 font-medium">{user.lastname}</td>
                   <td className="whitespace-nowrap px-6 py-4">{user.firstname}</td>
                   <td className="whitespace-nowrap px-6 py-4">{user.email}</td>
                   <td className="whitespace-nowrap px-6 py-4">{user.roles.map((role) => role.name).join(', ')}</td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <span className='border-2 border-color1 p-1 text-color1 rounded-lg'>Active</span>
+                    <span className='border-2 border-color1 px-1 text-color1 rounded-lg'>Active</span>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <button className='bg-color1 px-2 py-1 rounded-lg text-white hover:bg-dark-color1'>
-                      <RiEdit2Line size={20}/>
-                    </button>
+                    <Link to='/users/user-details'>
+                      <RiEdit2Line className='bg-color1 p-1 rounded-lg text-white hover:bg-dark-color1' size={30}/>
+                    </Link>
                   </td>
                 </tr>
               )
